@@ -9,6 +9,7 @@ import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 import java.util.List;
 
 @Service
@@ -23,7 +24,7 @@ public class ConnectionServiceImpl implements ConnectionService {
     @Override
     public User connect(int userId, String countryName) throws Exception{
 
-        User user = userRepository2.findById(userId).get();
+        User user = (User) userRepository2.findById(userId).get();
         if(user.getMaskedIp()!=null){
             throw new Exception("Already connected");
         }
