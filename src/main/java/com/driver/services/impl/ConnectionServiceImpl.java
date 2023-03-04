@@ -78,7 +78,7 @@ public class ConnectionServiceImpl implements ConnectionService {
     }
     @Override
     public User disconnect(int userId) throws Exception {
-        User user = userRepository2.findById(userId).get();
+        User user = (User) userRepository2.findById(userId).get();
         if(user.getConnected()==false){
             throw new Exception("Already disconnected");
         }
@@ -89,8 +89,8 @@ public class ConnectionServiceImpl implements ConnectionService {
     }
     @Override
     public User communicate(int senderId, int receiverId) throws Exception {
-        User user = userRepository2.findById(senderId).get();
-        User user1 = userRepository2.findById(receiverId).get();
+        User user = (User) userRepository2.findById(senderId).get();
+        User user1 = (User) userRepository2.findById(receiverId).get();
 
         if(user1.getMaskedIp()!=null){
             String str = user1.getMaskedIp();
